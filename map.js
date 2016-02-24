@@ -7,7 +7,7 @@ $(document).ready(function(){
     var map = initMap()
 
     // Pull data
-    var url = "https://en.wikipedia.org/w/api.php?action=query&prop=coordinates&titles=Switzerland&format=json&callback=jsonCallback"
+    var url = "https://en.wikipedia.org/w/api.php?action=query&prop=info|coordinates&titles=Assassination_of_John_F._Kennedy&format=json&callback=jsonCallback"
 
     $.ajax({
         type: 'GET',
@@ -17,10 +17,11 @@ $(document).ready(function(){
         contentType: "application/json",
         dataType: 'jsonp',
         success: function(json) {
+            console.log(json);
             $(json.query.pages).each(function(){
 
-                lati = this[26748].coordinates[0].lat;
-                longi = this[26748].coordinates[0].lon;
+                lati = this[Object.keys(json.query.pages)[0]].coordinates[0].lat;
+                longi = this[Object.keys(json.query.pages)[0]].coordinates[0].lon;
                 console.log(lati)
 
 
