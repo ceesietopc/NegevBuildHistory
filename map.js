@@ -4,7 +4,7 @@
 //basic map config with custom fills, mercator projection
 $(document).ready(function(){
     // Initialize map
-    var map = initMap()
+    var map = updateMap()
 
     // Pull data
     var url = "https://en.wikipedia.org/w/api.php?action=query&prop=info|coordinates&titles=Assassination_of_John_F._Kennedy&format=json&callback=jsonCallback"
@@ -25,14 +25,14 @@ $(document).ready(function(){
                 console.log(lati)
 
 
-                map.bubbles([
-                    {name: 'Switzerland!', latitude: lati, longitude: longi, radius: 20, fillKey: 'gt50'},
-
-                ], {
-                    popupTemplate: function(geo, data) {
-                        return "<div class='hoverinfo'>It is " + data.name + "</div>";
-                    }
-                })
+                //map.bubbles([
+                //    {name: 'Switzerland!', latitude: lati, longitude: longi, radius: 20, fillKey: 'gt50'},
+                //
+                //], {
+                //    popupTemplate: function(geo, data) {
+                //        return "<div class='hoverinfo'>It is " + data.name + "</div>";
+                //    }
+                //})
             });
         },
         error: function(e) {
@@ -42,17 +42,34 @@ $(document).ready(function(){
 
 });
 
-function initMap() {
+function updateMap(year) {
+
+    year = typeof year !== 'undefined' ? year : 1950;
+
     var map = new Datamap({
-        scope: 'world',
+        scope: 'comm.couleur',
         element: document.getElementById('container1'),
-        projection: 'mercator',
-        height: 500,
+        geographyConfig: {
+          //dataUrl: 'http://api.thenmap.net/v1/world/geo/'+year+'?geo_type=topojson',
+            dataUrl: 'http://joelgombin.fr/cartes/comm.couleur.json',
+          hideAntarctica: true
+        },
+        //setProjection: function(element, options) {
+        //    var projection, path;
+        //    projection = d3.geo.mercator().center([0,0])
+        //        .scale(element.offsetWidth)
+        //        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+        //    path = d3.geo.path().projection(projection);
+        //
+        //    return ({path: path, projection: projection})
+        //},
         fills: {
             defaultFill: '#f0af0a',
             lt50: 'rgba(0,244,244,0.9)',
             gt50: 'red'
         },
+
+        height: 500,
 
         data: {
             USA: {fillKey: 'lt50' },
