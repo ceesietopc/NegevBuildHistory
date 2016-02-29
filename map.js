@@ -47,22 +47,25 @@ function updateMap(year) {
     year = typeof year !== 'undefined' ? year : 1950;
 
     var map = new Datamap({
-        scope: 'comm.couleur',
-        element: document.getElementById('container1'),
+        scope: 'geo',
+        element: document.getElementById('map'),
         geographyConfig: {
-          //dataUrl: 'http://api.thenmap.net/v1/world/geo/'+year+'?geo_type=topojson',
-            dataUrl: 'http://joelgombin.fr/cartes/comm.couleur.json',
+          dataUrl: 'http://api.thenmap.net/v1/world/geo/'+year+'?geo_type=topojson',
+            //dataUrl: 'http://joelgombin.fr/cartes/comm.couleur.json',
           hideAntarctica: true
         },
-        //setProjection: function(element, options) {
-        //    var projection, path;
-        //    projection = d3.geo.mercator().center([0,0])
-        //        .scale(element.offsetWidth)
-        //        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-        //    path = d3.geo.path().projection(projection);
-        //
-        //    return ({path: path, projection: projection})
-        //},
+        setProjection: function(element, options) {
+            var width = options.width || element.offsetWidth;
+            var height = options.height || element.offsetHeight;
+
+            var projection, path;
+            projection = d3.geo[options.projection]()
+            .scale((width + 1) / 2 / Math.PI)
+            .translate([width / 2, height / (options.projection === "mercator" ? 1.45 : 1.8)]);
+            path = d3.geo.path().projection(projection);
+
+            return ({path: path, projection: projection})
+        },
         fills: {
             defaultFill: '#f0af0a',
             lt50: 'rgba(0,244,244,0.9)',
