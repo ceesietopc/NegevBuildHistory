@@ -50,15 +50,22 @@
         id: "year-slider",
         min: -1000,
         max: 2000,
-        step: 50,
+        step: 5,
         value: 0      
       });
       $("#year-slider").width(400);
       yearSlider.on('change', function(){
         var selectedYear = yearSlider.getValue()
-        var civilizationsToShow = civilizations.filter(function(el, index, arr) {
-          return ((el['start'] < selectedYear) && (el['end'] > selectedYear))
-        });
+        $(polygons).each(function(index,polygon){
+          if( ((parseInt(polygon.data['startYear']) < selectedYear) && (parseInt(polygon.data['endYear']) > selectedYear)) ){
+            polygon.setVisible(true)
+          } else {
+            polygon.setVisible(false)
+          }
+        })
+        // var civilizationsToShow = polygons.map(function(el, index, arr) {
+        //   return ((parseInt(el.data['startYear']) < selectedYear) && (parseInt(el.data['endYear']) > selectedYear))
+        // });
         // console.log(civilizationsToShow);
       })
     </script>

@@ -27,3 +27,7 @@ function setAllShapesVisible () {
         polygon.setVisible(true);
     })
 }
+
+function showPolygon (polygon) {
+    polygon.setVisible(true);
+}
