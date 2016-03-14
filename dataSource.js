@@ -1,36 +1,60 @@
-function mapperFunc(obj) {
-    console.log(obj)
-    return {
-        'lat': obj['Latitude'],
-        'lng': obj['Longitude']
+var civilizationAreas = [
+    {
+        "civilizationName": 'Incan Empire',
+        "startYear": 1230,
+        "endYear": 1400,
+        "info": 'Incans could travel up to 8mph on llama back',
+        "pic": "http://www-tc.pbs.org/wgbh/nova/assets/img/lost-inca-empire/image-05-large.jpg",
+        "coordinates": [
+            {
+                "lat":-12.726084,
+                "lng":-72.756958
+            },
+            {
+                "lat":-13.183794,
+                "lng":-72.962952
+            },
+            {
+                "lat":-13.427024,
+                "lng":-72.210388
+            },
+            {
+                "lat":-12.758232,
+                "lng":-72.05658
+            } 
+        ]
+    },
+    {
+        "civilizationName": 'Incan Empire',
+        "startYear": 1493,
+        "endYear": 1525,
+        "info": 'Incans GREW STRONGER',
+        "pic": "http://www-tc.pbs.org/wgbh/nova/assets/img/lost-inca-empire/image-05-large.jpg",
+        "coordinates": [
+            {
+                "lat":1.472006,
+                "lng":-78.914795
+              },
+              {
+                "lat":0.922812,
+                "lng":-77.772217
+              },
+              {
+                "lat":-1.164471,
+                "lng":-77.980957
+              },
+              {
+                "lat":-1.461023,
+                "lng":-78.475342
+              },
+              {
+                "lat":-0.175781,
+                "lng":-80.683594
+              },
+              {
+                "lat":1.63674,
+                "lng":-80.024414
+              } 
+        ]
     }
-}
-
-peruLats = [
-{
-    "Latitude":-12.726084,
-        "Longitude":-72.756958
-},
-{
-    "Latitude":-13.183794,
-        "Longitude":-72.962952
-},
-{
-    "Latitude":-13.427024,
-        "Longitude":-72.210388
-},
-{
-    "Latitude":-12.758232,
-        "Longitude":-72.05658
-}
 ];
-
-peru = {
-    "id": 1,
-    "start": 1230,
-    "end": 1400,
-    "info": "Inca's were like... pretty awesome...",
-    "loc": peruLats.map(mapperFunc)
-};
-
-var civilizations = [peru];
