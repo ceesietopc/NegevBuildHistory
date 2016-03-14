@@ -1,3 +1,6 @@
+polygons = {}
+
+
 function createPolygons (civilizations) {
     console.log('civilizations:',civilizations)
     $(civilizations).each(function(){
@@ -10,6 +13,8 @@ function createPolygons (civilizations) {
             fillColor: '#FF0000',
             fillOpacity: 0.35
         });
+        
         shp.setMap(map);
+        polygons[this.id] = shp;
     });
 }    
