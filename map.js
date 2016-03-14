@@ -51,41 +51,24 @@ function updateMap(year) {
         element: document.getElementById('map'),
         geographyConfig: {
           dataUrl: 'http://api.thenmap.net/v1/world/geo/'+year+'?geo_type=topojson',
-            //dataUrl: 'http://joelgombin.fr/cartes/comm.couleur.json',
+          //  dataUrl: 'http://joelgombin.fr/cartes/comm.couleur.json',
           hideAntarctica: true
         },
-        setProjection: function(element, options) {
-            var width = options.width || element.offsetWidth;
-            var height = options.height || element.offsetHeight;
-
-            var projection, path;
-            projection = d3.geo[options.projection]()
-            .scale((width + 1) / 2 / Math.PI)
-            .translate([width / 2, height / (options.projection === "mercator" ? 1.45 : 1.8)]);
-            path = d3.geo.path().projection(projection);
-
-            return ({path: path, projection: projection})
-        },
-        fills: {
-            defaultFill: '#f0af0a',
-            lt50: 'rgba(0,244,244,0.9)',
-            gt50: 'red'
-        },
-
+        //setProjection: function(element, options) {
+        //    var width = options.width || element.offsetWidth;
+        //    var height = options.height || element.offsetHeight;
+        //
+        //    var projection, path;
+        //    projection = d3.geo[options.projection]()
+        //    .scale((width + 1) / 2)
+        //    .translate([width / 2, height / (options.projection === "mercator" ? 1.45 : 1.8)]);
+        //    path = d3.geo.path().projection(projection);
+        //
+        //    return ({path: path, projection: projection})
+        //},
         height: 500,
-
-        data: {
-            USA: {fillKey: 'lt50' },
-            RUS: {fillKey: 'lt50' },
-            CAN: {fillKey: 'lt50' },
-            BRA: {fillKey: 'gt50' },
-            ARG: {fillKey: 'gt50'},
-            COL: {fillKey: 'gt50' },
-            AUS: {fillKey: 'gt50' },
-            ZAF: {fillKey: 'gt50' },
-            MAD: {fillKey: 'gt50' }
-        }
-    })
+        width: 500,
+    });
 
     return map;
 }

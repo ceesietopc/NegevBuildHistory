@@ -3,7 +3,7 @@ function createPolygons (civilizations) {
     $(civilizations).each(function(){
 
         var shp = new google.maps.Polygon({
-            paths: this['loc'],
+            paths: this['coordinates'],
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
             strokeWeight: 2,

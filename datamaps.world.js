@@ -141,6 +141,7 @@
 
         //var geoData = topojson.mesh(data[this.options.scope])
         var geoData = topojson.feature( data[this.options.scope], data[this.options.scope].objects.collection).features;
+        //var geoData = topojson.feature( data, data.objects[this.options.scope]).features;
 
         if ( geoConfig.hideAntarctica ) {
             geoData = geoData.filter(function(feature) {
