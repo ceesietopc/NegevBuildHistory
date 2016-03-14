@@ -24,6 +24,13 @@
     <script src="dataSource.js"></script>
     <script src="initializeMap.js"></script>
     <script src="createPolygons.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var spreadSheetURL = "https://spreadsheets.google.com/feeds/list/1z4ijUO5DA9ZAtIE3dBOORiVDEGjfjX-m1Y3xam7f0ao/od6/public/values?alt=json"
+            pullSpreadSheetData(spreadSheetURL,createPolygons);
+        });
+
+    </script>
 
     <!--Load the map-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgwKqUtzvkzr40gN6pg1TnVDmzVG1_sGg&callback=initMap"
