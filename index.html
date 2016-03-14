@@ -21,11 +21,34 @@
     <script src="dataSource.js"></script>
     <script src="initializeMap.js"></script>
     <script src="createPolygons.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link href="bootstrap-slider.css" rel="stylesheet" />
 
+    <div id="slider-box" style="position:fixed;top:50px;left:50px;height:110px;width:430px;padding-left:10px; border-radius:5px;border:5px solid gray;background-color:white;">
+      <h3>Select Year</h3>
+      <div id="year-slider"></div>
+    </div>      
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgwKqUtzvkzr40gN6pg1TnVDmzVG1_sGg&callback=initMap"
     async defer></script>
 
-
+    <script>
+     window.yearSlider = new Slider("#year-slider", {
+        id: "year-slider",
+        min: -1000,
+        max: 2000,
+        step: 50,
+        value: 0      
+      });
+      $("#year-slider").width(400);
+      yearSlider.on('change', function(){
+        var selectedYear = yearSlider.getValue()
+        var civilizationsToShow = civilizations.filter(function(el, index, arr) {
+          return ((el['start'] < selectedYear) && (el['end'] > selectedYear))
+        });
+        // console.log(civilizationsToShow);
+      })
+    </script>
 
   </body>
 </html>
